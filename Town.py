@@ -6,7 +6,7 @@ class Town():
     def CalculateTownsDistance(self, TownB):
         from math import sqrt, pow, fabs
  
-        # Obliczenie odleg³oœci miêdzy dwoma punktami 
+        # Obliczenie odlegÅ‚oÅ›ci miÄ™dzy dwoma punktami 
         distance = fabs(sqrt(pow((TownB.X - self.X), 2) + pow((TownB.Y - self.Y), 2)))
         return distance
 
