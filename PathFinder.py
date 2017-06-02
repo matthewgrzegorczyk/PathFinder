@@ -120,23 +120,32 @@ class MainUiWindow(object):
         self.clearall.clicked.connect(self.result.clear)
         self.clearall.clicked.connect(self.lname.clear)
         self.clearall.clicked.connect(self.fname.clear)
-        self.showres.clicked.connect(self.__name)
+        self.showres.clicked.connect(self.__Sample)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def __name(self):
-        name = self.fname.text() + " " + self.lname.text()
-        self.result.setText("<font color=\"#ffffff\"><b><u>" + name + "</u></b></font>")
+    def __Sample(self):
+        from Town import Town
+        import re
+
+        # Rozbijamy wprowadzone koordy separatorem ',' i castujemy to na listę intów
+        TownACoords = list(map(int, re.split(',', self.fname.text())))
+        TownBCoords = list(map(int, re.split(',', self.lname.text())))
+
+        TownA = Town(TownACoords[0], TownACoords[1])
+        TownB = Town(TownBCoords[0], TownBCoords[1])
+        result = TownA.CalculateTownsDistance(TownB)
+        self.result.setText("<font color=\"#ffffff\"><b><u>" + str(result) + "</u></b></font>")
 
     def retranslate_gui(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
 
-        MainWindow.setWindowTitle(_translate("MainWindow", "Name Concatenation"))
-        self.lastname.setText(_translate("MainWindow", "Last Name :"))
-        self.firstname.setText(_translate("MainWindow", "First Name :"))
-        self.fullname.setText(_translate("MainWindow", "Concatenated Name :-"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Distance Calculation"))
+        self.lastname.setText(_translate("MainWindow", "Town B :"))
+        self.firstname.setText(_translate("MainWindow", "Town A :"))
+        self.fullname.setText(_translate("MainWindow", "Result :-"))
         self.result.setText(_translate("MainWindow", "<Name>"))
-        self.showres.setText(_translate("MainWindow", "Show Name!"))
+        self.showres.setText(_translate("MainWindow", "Calculate!"))
         self.clearall.setText(_translate("MainWindow", "Clear All"))
 
 
