@@ -1,7 +1,7 @@
-# Tutaj s¹ funkcje, które s¹ pomocne w rozwi¹zaniu zadanego problemu, ale nie s¹ przypisane do klasy
+# Tutaj sÄ… funkcje, ktÃ³re sÄ… pomocne w rozwiÄ…zaniu zadanego problemu, ale nie sÄ™ przypisane do Å¼adnej klasy
 
 def CalculateDistanceBurning(Distance, Burning):
 
-    # Obliczenie spalania na Distance kilometrów
+    # Obliczenie spalania na Distance kilometrÃ³w
     heuristic = Burning / Distance
     return heuristic
