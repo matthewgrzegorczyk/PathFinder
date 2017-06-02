@@ -3,5 +3,6 @@
 def CalculateDistanceBurning(Distance, Burning):
 
     # Obliczenie spalania na Distance kilometrów
-    heuristic = Burning / Distance
+    distanceFactor = Distance / 100
+    Heuristic = (Burning / Distance) * distanceFactor
     return heuristic
