@@ -13,6 +13,7 @@ last edited: January 2015
 """
 
 from PyQt5 import QtCore, QtWidgets
+from math import acos, cos, sin, fabs, sqrt, pi
 
 __author__ = "Psycho_Coder"
 
@@ -139,8 +140,74 @@ class MainUiWindow(object):
         self.clearall.setText(_translate("MainWindow", "Clear All"))
 
 
+class Helpers(object):
+    cities = {
+        'Bialystok': (53.132549, 23.169454),
+        'Lomza': (53.178030, 22.059080),
+        'Warsaw': (52.228649, 21.025483),
+        'Olsztyn': (53.778628, 20.480804),
+        'Wroclaw': (51.108092, 17.035121),
+    }
+    betterCities = {
+        'Bialystok': (53.132489, 23.168840),
+        'Lomza': (53.178120, 22.059032),
+        'Warsaw': (52.229676, 21.012229),
+        'Olsztyn': (53.778422, 20.480119),
+        'Wroclaw': (51.107885, 17.038538),
+        'Gdansk': (54.352025, 18.646638),
+        'Slupsk': (54.464148, 17.028482),
+        'a': (54.366667, 18.633333),  # Gdansk
+        'b': (54.466667, 17.016667),  # Slupsk
+    }
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def calculate_distance(pA, pB):
+        """
+        # useful links
+        # https://pl.wikibooks.org/wiki/Astronomiczne_podstawy_geografii/Odleg%C5%82o%C5%9Bci
+        # http://www.latlong.net/
+        
+        WORK IN PROGRESSSSSSSSSS
+      
+        """
+
+        # maxLat = 90
+        # degreeToMeteres = 111100
+        #
+        # print(pA)
+        # print(pB)
+        # dLatA = maxLat - pA[0]
+        # dLatB = maxLat - pB[0]
+        #
+        # print(dLatA)
+        # print(dLatB)
+        #
+        #
+        # distance = 0
+        #
+        # partial = cos(dLatA) * cos(dLatB) + sin(dLatA) * sin(dLatB) * cos(pA[1]-pB[1])
+        # print(partial)
+        # l = acos(partial)
+        # print(l)
+        # distance = l * degreeToMeteres
+
+        # Obliczanie odległości w linii prostej pomiędzy dwoma punktami na mapie pomijając krzywiznę Ziemi.
+        # Zwracan wartość jest w kilometrach.
+        distance = (pA[0] - pB[0])**2
+        distance += (cos((pA[0] * pi)/180) * (pB[1] - pA[1]))**2
+        distance = sqrt(distance) * (40075.704/360)
+        print("Distance: " + str(distance))
+
+        return distance
+
+
 if __name__ == "__main__":
     import sys
+
+    Helpers.calculate_distance(Helpers.betterCities['a'], Helpers.betterCities['b'])
 
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
