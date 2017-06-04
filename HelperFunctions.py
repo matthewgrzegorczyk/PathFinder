@@ -1,4 +1,6 @@
 # Tutaj są funkcje, które są pomocne w rozwiązaniu zadanego problemu, ale nie sę przypisane do żadnej klasy
+from math import acos, cos, sin, fabs, sqrt, pi
+
 
 def CalculateDistanceBurning(Distance, Burning):
 

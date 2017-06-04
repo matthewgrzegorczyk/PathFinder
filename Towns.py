@@ -1,4 +1,4 @@
-class Helpers(object):
+class Towns(object):
     cities = {
         'Bialystok': (53.132549, 23.169454),
         'Lomza': (53.178030, 22.059080),

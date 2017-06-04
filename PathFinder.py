@@ -13,7 +13,8 @@ last edited: January 2015
 """
 
 from PyQt5 import QtCore, QtWidgets
-from math import acos, cos, sin, fabs, sqrt, pi
+from Towns import Towns
+from HelperFunctions import *
 
 __author__ = "Psycho_Coder"
 
@@ -125,15 +126,15 @@ class MainUiWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def __Sample(self):
-        from Town import Town
         import re
 
         # Rozbijamy wprowadzone koordy separatorem ',' i castujemy to na listę intów
-        TownACoords = list(map(int, re.split(',', self.fname.text())))
-        TownBCoords = list(map(int, re.split(',', self.lname.text())))
+        TownACoords = list(map(float, re.split(',', self.fname.text())))
+        TownBCoords = list(map(float, re.split(',', self.lname.text())))
 
+        result = calculate_distance(TownACoords, TownBCoords);
         
-        self.result.setText("<font color=\"#ffffff\"><b><u>" + str(result) + "</u></b></font>")
+        self.result.setText("<font color=\"#ffffff\"><b><u>" + str(round(result, 3)) + "</u></b></font>")
 
     def retranslate_gui(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -149,8 +150,8 @@ class MainUiWindow(object):
 if __name__ == "__main__":
     import sys
 
-    Helpers.calculate_distance(Helpers.betterCities['a'], Helpers.betterCities['b'])
-
+    result = calculate_distance(Towns.betterCities['a'], Towns.betterCities['b'])
+    print('Gdansk -> Slupsk: ' + str(round(result, 3)) + " km")
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = MainUiWindow()
