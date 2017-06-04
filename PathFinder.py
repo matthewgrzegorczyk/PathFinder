@@ -150,8 +150,13 @@ class MainUiWindow(object):
 if __name__ == "__main__":
     import sys
 
-    result = calculate_distance(Towns.betterCities['a'], Towns.betterCities['b'])
-    print('Gdansk -> Slupsk: ' + str(round(result, 3)) + " km")
+    #result = calculate_distance(Towns.betterCities['a'], Towns.betterCities['b'])
+    #print('Gdansk -> Slupsk: ' + str(round(result, 3)) + " km")
+
+    for (city, betterCity) in zip(Towns.cities.keys(), Towns.betterCities.keys()):
+        result = calculate_distance(Towns.cities[city], Towns.betterCities[betterCity])
+        print(city + " --> " + betterCity + ": " + str(round(result, 3)) + " km")
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = MainUiWindow()
