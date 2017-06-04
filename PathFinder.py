@@ -148,30 +148,6 @@ class MainUiWindow(object):
         self.showres.setText(_translate("MainWindow", "Calculate!"))
         self.clearall.setText(_translate("MainWindow", "Clear All"))
 
-
-class Helpers(object):
-    cities = {
-        'Bialystok': (53.132549, 23.169454),
-        'Lomza': (53.178030, 22.059080),
-        'Warsaw': (52.228649, 21.025483),
-        'Olsztyn': (53.778628, 20.480804),
-        'Wroclaw': (51.108092, 17.035121),
-    }
-    betterCities = {
-        'Bialystok': (53.132489, 23.168840),
-        'Lomza': (53.178120, 22.059032),
-        'Warsaw': (52.229676, 21.012229),
-        'Olsztyn': (53.778422, 20.480119),
-        'Wroclaw': (51.107885, 17.038538),
-        'Gdansk': (54.352025, 18.646638),
-        'Slupsk': (54.464148, 17.028482),
-        'a': (54.366667, 18.633333),  # Gdansk
-        'b': (54.466667, 17.016667),  # Slupsk
-    }
-
-    def __init__(self):
-        pass
-
     @staticmethod
     def calculate_distance(pA, pB):
         """
