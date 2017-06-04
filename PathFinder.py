@@ -132,9 +132,7 @@ class MainUiWindow(object):
         TownACoords = list(map(int, re.split(',', self.fname.text())))
         TownBCoords = list(map(int, re.split(',', self.lname.text())))
 
-        TownA = Town(TownACoords[0], TownACoords[1])
-        TownB = Town(TownBCoords[0], TownBCoords[1])
-        result = TownA.CalculateTownsDistance(TownB)
+        
         self.result.setText("<font color=\"#ffffff\"><b><u>" + str(result) + "</u></b></font>")
 
     def retranslate_gui(self, MainWindow):
@@ -147,47 +145,6 @@ class MainUiWindow(object):
         self.result.setText(_translate("MainWindow", "<Name>"))
         self.showres.setText(_translate("MainWindow", "Calculate!"))
         self.clearall.setText(_translate("MainWindow", "Clear All"))
-
-    @staticmethod
-    def calculate_distance(pA, pB):
-        """
-        # useful links
-        # https://pl.wikibooks.org/wiki/Astronomiczne_podstawy_geografii/Odleg%C5%82o%C5%9Bci
-        # http://www.latlong.net/
-        
-        WORK IN PROGRESSSSSSSSSS
-      
-        """
-
-        # maxLat = 90
-        # degreeToMeteres = 111100
-        #
-        # print(pA)
-        # print(pB)
-        # dLatA = maxLat - pA[0]
-        # dLatB = maxLat - pB[0]
-        #
-        # print(dLatA)
-        # print(dLatB)
-        #
-        #
-        # distance = 0
-        #
-        # partial = cos(dLatA) * cos(dLatB) + sin(dLatA) * sin(dLatB) * cos(pA[1]-pB[1])
-        # print(partial)
-        # l = acos(partial)
-        # print(l)
-        # distance = l * degreeToMeteres
-
-        # Obliczanie odległości w linii prostej pomiędzy dwoma punktami na mapie pomijając krzywiznę Ziemi.
-        # Zwracan wartość jest w kilometrach.
-        distance = (pA[0] - pB[0])**2
-        distance += (cos((pA[0] * pi)/180) * (pB[1] - pA[1]))**2
-        distance = sqrt(distance) * (40075.704/360)
-        print("Distance: " + str(distance))
-
-        return distance
-
 
 if __name__ == "__main__":
     import sys
