@@ -48,14 +48,26 @@ def calculate_distance(pA, pB):
     distance = sqrt(distance) * (40075.704/360)
     return distance
 
-def import_data(filename):
+def import_cities(filename):
     h_file = open(filename, 'r')
     cities = {}
-    for line in h_file:
+    for lineno, line in enumerate(h_file, start=1):
         fields = line.split(',')
         name = fields[0].strip()
         lat = float(fields[1])
         lng = float(fields[2])
         cities[name] = (lat, lng)
+        cities[str(lineno)] = (lat, lng)
 
     return cities
+
+def import_connections(filename):
+    h_file = open(filename, 'r')
+    connections = {}
+    for line in h_file:
+        fields = line.split(',')
+        connection_name = fields[0].strip() + "," + fields[1].strip()
+        burning = float(fields[2])
+        connections[connection_name] = burning
+
+    return connections
