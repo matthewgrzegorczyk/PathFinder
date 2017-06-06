@@ -6,8 +6,8 @@ import json
 def CalculateDistanceBurning(Distance, Burning):
 
     # Obliczenie spalania na Distance kilometrów
-    distanceFactor = Distance / 100
-    Heuristic = (Burning / Distance) * distanceFactor
+    distanceFactor = float(Distance / 100)
+    Heuristic = float((Burning / Distance) * distanceFactor)
     return heuristic
 
 
