@@ -153,10 +153,23 @@ if __name__ == "__main__":
     #result = calculate_distance(Towns.betterCities['a'], Towns.betterCities['b'])
     #print('Gdansk -> Slupsk: ' + str(round(result, 3)) + " km")
 
-    data = import_data('cities.txt')
-    for (city, betterCity) in zip(Towns.cities.keys(), Towns.betterCities.keys()):
-        result = calculate_distance(Towns.cities[city], Towns.betterCities[betterCity])
-        print(city + " --> " + betterCity + ": " + str(round(result, 3)) + " km")
+    cities = import_cities('cities.txt')
+    connections = import_connections('connections.txt')
+    graph = [[0 for x in range(len(connections))] for y in range(int(len(cities) / 2))]
+
+    # See incidence matrix: http://eduinf.waw.pl/inf/alg/001_search/0124.php 
+
+    for (i, key) in enumerate(connections.keys()):
+        ab = key.split(',')
+        a = ab[0]
+        b = ab[1]
+        graph[int(a)][i] = 1
+        graph[int(b)][i] = -1
+
+    print('\n'.join([''.join(['{:3}'.format(item) for item in row]) for row in graph]))
+    #for (city, betterCity) in zip(Towns.cities.keys(), Towns.betterCities.keys()):
+    #   result = calculate_distance(Towns.cities[city], Towns.betterCities[betterCity])
+    #   print(city + " --> " + betterCity + ": " + str(round(result, 3)) + " km")
 
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
