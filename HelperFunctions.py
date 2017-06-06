@@ -1,5 +1,6 @@
 # Tutaj są funkcje, które są pomocne w rozwiązaniu zadanego problemu, ale nie sę przypisane do żadnej klasy
 from math import acos, cos, sin, fabs, sqrt, pi
+import json
 
 
 def CalculateDistanceBurning(Distance, Burning):
@@ -46,3 +47,15 @@ def calculate_distance(pA, pB):
     distance += (cos((pA[0] * pi)/180) * (pB[1] - pA[1]))**2
     distance = sqrt(distance) * (40075.704/360)
     return distance
+
+def import_data(filename):
+    h_file = open(filename, 'r')
+    cities = {}
+    for line in h_file:
+        fields = line.split(',')
+        name = fields[0].strip()
+        lat = float(fields[1])
+        lng = float(fields[2])
+        cities[name] = (lat, lng)
+
+    return cities
