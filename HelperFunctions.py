@@ -4,7 +4,6 @@ import json
 
 
 def CalculateDistanceBurning(Distance, Burning):
-
     # Obliczenie spalania na Distance kilometrów
     distanceFactor = float(Distance / 100)
     Heuristic = float((Burning / Distance) * distanceFactor)
@@ -43,10 +42,11 @@ def calculate_distance(pA, pB):
 
     # Obliczanie odległości w linii prostej pomiędzy dwoma punktami na mapie pomijając krzywiznę Ziemi.
     # Zwracana wartość jest w kilometrach.
-    distance = (pA[0] - pB[0])**2
-    distance += (cos((pA[0] * pi)/180) * (pB[1] - pA[1]))**2
-    distance = sqrt(distance) * (40075.704/360)
+    distance = (pA[0] - pB[0]) ** 2
+    distance += (cos((pA[0] * pi) / 180) * (pB[1] - pA[1])) ** 2
+    distance = sqrt(distance) * (40075.704 / 360)
     return distance
+
 
 def import_cities(filename):
     h_file = open(filename, 'r')
@@ -57,9 +57,10 @@ def import_cities(filename):
         lat = float(fields[1])
         lng = float(fields[2])
         cities[name] = (lat, lng)
-        cities[str(lineno)] = (lat, lng)
+        # cities[str(lineno)] = (lat, lng)
 
     return cities
+
 
 def import_connections(filename):
     h_file = open(filename, 'r')
