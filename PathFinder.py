@@ -13,7 +13,7 @@ last edited: January 2015
 """
 
 from PyQt5 import QtCore, QtWidgets
-from Towns import Towns
+from Graph import Graph
 from HelperFunctions import *
 
 __author__ = "Psycho_Coder"
@@ -155,18 +155,10 @@ if __name__ == "__main__":
 
     cities = import_cities('cities.txt')
     connections = import_connections('connections.txt')
-    graph = [[0 for x in range(len(connections))] for y in range(int(len(cities) / 2))]
 
-    # See incidence matrix: http://eduinf.waw.pl/inf/alg/001_search/0124.php 
+    graph = Graph(connections, cities)
 
-    for (i, key) in enumerate(connections.keys()):
-        ab = key.split(',')
-        a = ab[0]
-        b = ab[1]
-        graph[int(a)][i] = 1
-        graph[int(b)][i] = -1
-
-    print('\n'.join([''.join(['{:3}'.format(item) for item in row]) for row in graph]))
+    print('\n'.join([''.join(['{:3}'.format(item) for item in row]) for row in graph.graph]))
     #for (city, betterCity) in zip(Towns.cities.keys(), Towns.betterCities.keys()):
     #   result = calculate_distance(Towns.cities[city], Towns.betterCities[betterCity])
     #   print(city + " --> " + betterCity + ": " + str(round(result, 3)) + " km")
